@@ -43,20 +43,20 @@ func TestWriteMessagesToChannel(t *testing.T) {
 }
 
 func TestReadMessagesFromChannel(t *testing.T) {
-	a.SubscribeToChannel("USDT_BTC")
+	a.SubscribeToChannel("BTC_USDT")
 
 	ch := make(chan BestOrderBook)
 	go a.ReadMessagesFromChannel(ch)
 	select {
 	case <-ch:
 		return
-	case <-time.After(2 * time.Second):
+	case <-time.After(4 * time.Second):
 		t.Errorf("ReadMessagesFromChannel() failed")
 	}
 }
 
 func TestSubscribeToChannel(t *testing.T) {
-	if err := a.SubscribeToChannel("USDT_BTC"); err != nil {
+	if err := a.SubscribeToChannel("BTC_USDT"); err != nil {
 		t.Errorf("SubscribeToChannel() failed")
 	}
 }
